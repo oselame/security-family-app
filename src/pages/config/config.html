@@ -11,11 +11,11 @@
     <form #f="ngForm" (ngSubmit)="onSaveConfig(f.value)">
         <ion-item>
             <ion-label>Name:</ion-label>
-            <ion-input type="text" ngModel required></ion-input>
+            <ion-input type="text" name="name" ngModel required></ion-input>
         </ion-item>
         <ion-item>
             <ion-label>Fone:</ion-label>
-            <ion-input type="text" ngModel required></ion-input>
+            <ion-input type="text" name="fone" ngModel required></ion-input>
         </ion-item>
         <button ion-button block [disabled]="!f.valid">Save</button>
     </form>

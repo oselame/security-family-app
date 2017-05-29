@@ -35,7 +35,6 @@ export class ConfigurationServices {
       );
   }
 
-
   getConfiguration() {
     return this.storage.get(this.dbName)
       .then(

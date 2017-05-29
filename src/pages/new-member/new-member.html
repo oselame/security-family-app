@@ -9,11 +9,11 @@
     <form #f="ngForm" (ngSubmit)="onAddNewMember(f.value)">
         <ion-item>
             <ion-label>Name:</ion-label>
-            <ion-input type="fone" name="name" ngModel required></ion-input>
+            <ion-input type="text" name="name" ngModel required></ion-input>
         </ion-item>
         <ion-item>
             <ion-label>Fone:</ion-label>
-            <ion-input type="fone" name="fone" ngModel required></ion-input>
+            <ion-input type="text" name="fone" ngModel required></ion-input>
         </ion-item>
         <button ion-button block [disabled]="!f.valid" type="submit">Save</button>
     </form>

@@ -31,44 +31,29 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
-    console.log("ionViewWillEnter");
+    // console.log("ionViewWillEnter");
     this.onLoadPage();    
   }
 
   ionViewDidLoad(){
-    //console.log("ionViewDidLoad");
-    //this.onLoadPage();
+    console.log("ionViewDidLoad");
+    // this.onLoadPage();
   }
 
   onLoadPage() {
-    if (this.existsConfigApp()) {
-        /*
-        this.geolocation.getCurrentPosition(this.options)
-          .then((resp) => {
-            this.lat = resp.coords.latitude;
-            this.lng = resp.coords.longitude;
-            console.log("lat: " + this.lat + " / lng: " + this.lng);
-          }).catch((error) => {
-            console.log('Error getting location', error);
-            this.showAlert();
-          });*/
-    } else {
-      this.navCtrl.push(ConfigPage);
-    }
-  }
-
-  existsConfigApp() {
-    console.log("Consultando configuration");
-    return this.configServices.existsConfiguration()
+    this.configServices.existsConfiguration()
       .then(
         (config) => {
           console.log("Config is " + config);
-          return config;
+          if (!!config) {
+            this.showMap()
+          } else {
+            this.navCtrl.push(ConfigPage);
+          }
         }
       ).catch(
         (error) => {
           console.log("Error is " + error);
-          return false;
         }
       );
   }
@@ -93,6 +78,18 @@ export class HomePage {
   onNewMember() {
     //this.modalController.create(NewMemberPage).present();    
     this.navCtrl.push(NewMemberPage);
+  }
+
+  showMap() {
+    this.geolocation.getCurrentPosition(this.options)
+          .then((resp) => {
+            this.lat = resp.coords.latitude;
+            this.lng = resp.coords.longitude;
+            console.log("lat: " + this.lat + " / lng: " + this.lng);
+          }).catch((error) => {
+            console.log('Error getting location', error);
+            this.showAlert();
+          });
   }
 
 }
