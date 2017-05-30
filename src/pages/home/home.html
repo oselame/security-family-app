@@ -8,11 +8,20 @@
 </ion-header>
 
 <ion-content padding>
-    <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="15">
-        <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true">
+    <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="10">
+        <sebm-google-map-marker [latitude]="member.location.lat" [longitude]="member.location.lng" [markerDraggable]="false" *ngFor="let member of members">
         </sebm-google-map-marker>
     </sebm-google-map>
+    <!--
+    <ul>
+        <li *ngFor="let item of members">
+            {{item.location.lat}} {{item.location.lng}}
+        </li>
+    </ul>
+    -->
 </ion-content>
+<!--
 <ion-footer>
     <button ion-button block (click)="onNewMember()">New Member</button>
 </ion-footer>
+-->

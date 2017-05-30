@@ -5,29 +5,68 @@ import { Member } from './../models/member-model';
 
 @Injectable()
 export class MemberServices {
+  private dbName : string = 'memberdb';
 
-  members : Member[] = [];
+  private members : Member[] = [];
 
-  constructor(private storage: Storage) {
+  constructor(public storage: Storage) {
     console.log('Hello MemberServices Provider');
   }
 
   addNemMember(member : Member) {
+    member.location = {lat: 0, lng: 0};
     this.members.push(member);
-    this.storage.set('memberdb', this.members.slice());
-    console.log("New member add with success.", this.members);
+    console.log(this.members.length);    
+    this.storage.set(this.dbName, this.members);
   }
 
   getMembers() {
-    /*
-    this.storage.get('members')
+    return this.storage.get('members')
       .then(
-        (member) => {
-          console.log(member)
+        (members) => {
+           this.members = members == null ? [] : members;
+          //this.members = this.createMembers()
+          return this.createMembers().slice();
         }
       ).catch(
-        (error) => console.log(error)
+        (error) => {
+          console.log(error);
+          return [];
+        }
       );
-      */
+  }
+
+  createMembers() {
+    return [
+      {
+        name : "Adriano Oselame",
+        fone : "(48) 98403-2497",
+        location: {
+            lat: -27.680143,
+            lng: -48.644707
+        }
+      }, {
+        name : "Lidiane Alves Espindola Oselame",
+        fone : "(48) 98403-2498",
+        location: {
+            lat: -27.634970,
+            lng: -48.652832
+        }
+      }, {
+        name : "Adriana Espindola Oselame",
+        fone : "(48) 98403-2498",
+        location: {
+            lat: -27.594031,
+            lng: -48.543433
+        }
+      }, {
+        name : "Gustavo Espindola Oselame",
+        fone : "(48) 98403-2498",
+        location: {
+            lat: -27.594031,
+            lng: -48.533433
+        }
+      }
+    ]
   }
 }

@@ -6,6 +6,8 @@ import { AlertController } from 'ionic-angular';
 
 import { ConfigPage } from './../config/config';
 
+import { Member } from './../../models/member-model';
+import { MemberServices } from './../../services/member-services';
 import { ConfigurationServices } from './../../services/configuration-services';
 import { Geolocation, GeolocationOptions } from '@ionic-native/geolocation';
 
@@ -17,6 +19,8 @@ export class HomePage {
   lat: number = 0;
   lng: number = 0;
 
+  members: Member[] = [];
+
   options: GeolocationOptions = {
     maximumAge: 0,
     timeout: 40000,
@@ -27,11 +31,11 @@ export class HomePage {
     private geolocation: Geolocation,
     public alertCtrl: AlertController,
     public platform: Platform,
-    public configServices : ConfigurationServices) {
+    public configServices : ConfigurationServices,
+    public memberService: MemberServices) {
   }
 
   ionViewWillEnter(){
-    // console.log("ionViewWillEnter");
     this.onLoadPage();    
   }
 
@@ -44,8 +48,8 @@ export class HomePage {
     this.configServices.existsConfiguration()
       .then(
         (config) => {
-          console.log("Config is " + config);
           if (!!config) {
+            this.loadMembers();
             this.showMap()
           } else {
             this.navCtrl.push(ConfigPage);
@@ -76,7 +80,6 @@ export class HomePage {
   }  
 
   onNewMember() {
-    //this.modalController.create(NewMemberPage).present();    
     this.navCtrl.push(NewMemberPage);
   }
 
@@ -85,11 +88,21 @@ export class HomePage {
           .then((resp) => {
             this.lat = resp.coords.latitude;
             this.lng = resp.coords.longitude;
-            console.log("lat: " + this.lat + " / lng: " + this.lng);
           }).catch((error) => {
             console.log('Error getting location', error);
             this.showAlert();
           });
+  }
+
+  loadMembers() {
+    this.memberService.getMembers()
+      .then(
+        (members) => {
+          this.members = members;
+        }
+      ).catch(
+        error => console.log(error)
+      );
   }
 
 }

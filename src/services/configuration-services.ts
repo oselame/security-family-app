@@ -16,16 +16,13 @@ export class ConfigurationServices {
 
   saveConfiguration(configuration : Configuration) {
     this.storage.set(this.dbName, configuration);
-    console.log("Configuration saved.");
   }
 
   existsConfiguration() {
     return this.storage.get(this.dbName)
       .then(
         (config) => {
-          let ret = config == null ? false : true;
-          console.log("ConfigurationServices.config is " + ret);
-          return ret;
+          return config == null ? false : true;
         }
       ).catch(
         (error) => {

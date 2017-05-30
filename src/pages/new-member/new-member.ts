@@ -4,6 +4,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 
 import { MemberServices } from './../../services/member-services';
+import { Member } from './../../models/member-model';
+
 @Component({
   selector: 'page-new-member',
   templateUrl: 'new-member.html',
@@ -19,10 +21,11 @@ export class NewMemberPage {
 
   
   onClosePage() {
-    this.viewController.dismiss();
+    //this.viewController.dismiss();
+    this.navCtrl.pop();
   }
 
-  onAddNewMember(member: {name:string, fone:string}) {
+  onAddNewMember(member: Member) {
     this.memberServices.addNemMember(member);
     this.onClosePage();
   }
