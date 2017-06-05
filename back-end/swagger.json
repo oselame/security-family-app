@@ -1,0 +1,59 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Leaderboards API",
+        "description": "Manage various leaderboards for a game.",
+        "version": "1.0.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "paths": {
+        "/players": {
+            "get": {
+                "summary": "",
+                "description": "Returns all players from the system that the user has access to",
+                "x-swagger-router-controller": "players",
+                "operationId": "getPlayers",
+                "responses": {
+                    "200": {
+                        "description": "players response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/player"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "player": {
+            "type": "object",
+            "required": [
+                "id",
+                "firstName",
+                "lastName",
+                "displayName"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "displayName": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
