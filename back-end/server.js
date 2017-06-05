@@ -39,11 +39,14 @@ var ScoresController = require('./controllers/scores');
 var sc = new ScoresController(boardsApiV1);
 
 
-/*
-
 var BoardsService = require('./services/boards');
-BoardsService.addBoard('Total Score', 1);
-BoardsService.addBoard('Times Died', 0);
+var b1 = BoardsService.addBoard('Total Score', 1);
+var b2 = BoardsService.addBoard('Times Died', 0);
+
+var PlayersService = require('./services/players');
+var p1 = PlayersService.addPlayer({ firstName: 'Ben', lastName: 'Sparks', displayName: 'Warspawn' });
+var p2 = PlayersService.addPlayer({ firstName: 'Joe', lastName: 'Blow', displayName: 'Joey558' });
+var p3 = PlayersService.addPlayer({ firstName: 'Danny', lastName: 'Danger', displayName: 'DD83' });
 
 var ScoresService = require('./services/scores');
 ScoresService.addScore(b1.id, p1.id, 3000);
@@ -52,27 +55,19 @@ ScoresService.addScore(b1.id, p3.id, 15238);
 ScoresService.addScore(b2.id, p1.id, 33);
 ScoresService.addScore(b2.id, p2.id, 7);
 ScoresService.addScore(b2.id, p3.id, 67);
-*/
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.get('/', function(req, res) {
     res.send('Hello World!');
 });
 
 
-// seed the db for testing
-var PlayersService = require('./services/players');
-var p1 = PlayersService.addPlayer({ firstName: 'Ben', lastName: 'Sparks', displayName: 'Warspawn' });
-var p2 = PlayersService.addPlayer({ firstName: 'Joe', lastName: 'Blow', displayName: 'Joey558' });
-var p3 = PlayersService.addPlayer({ firstName: 'Danny', lastName: 'Danger', displayName: 'DD83' });
-/*
-var server = app.listen(3000, function() {
-    var host = server.address().address;
-    host = (host === '::' ? 'localhost' : host);
-    var port = server.address().port;
 
-    console.log('listening at http://%s:%s', host, port);
-});
-*/
 
 // Swagger Docs
 var swaggerTools = require('swagger-tools');
