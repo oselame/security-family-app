@@ -18,6 +18,12 @@ var ScoresController = require('./controllers/scores');
 var sc = new ScoresController(apiRouter);
 */
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 
 var apiRouter = express.Router();
 app.use('/api', apiRouter);
@@ -56,11 +62,7 @@ ScoresService.addScore(b2.id, p1.id, 33);
 ScoresService.addScore(b2.id, p2.id, 7);
 ScoresService.addScore(b2.id, p3.id, 67);
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+
 
 app.get('/', function(req, res) {
     res.send('Hello World!');

@@ -28,6 +28,45 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "summary": "",
+                "description": "Save the player to the system",
+                "x-swagger-router-controller": "players",
+                "operationId": "postPlayer",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                        "name": "firstName",
+                        "in": "formData",
+                        "description": "Name of player",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "lastName",
+                        "in": "formData",
+                        "description": "Last name of player",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "displayName",
+                        "in": "formData",
+                        "description": "Last name of player",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
             }
         },
         "/players/{id}": {
@@ -37,10 +76,7 @@
                 "x-swagger-router-controller": "players",
                 "operationId": "getSinglePlayer",
                 "produces": [
-                    "application/json",
-                    "application/xml",
-                    "text/xml",
-                    "text/html"
+                    "application/json"
                 ],
                 "parameters": [{
                     "name": "id",
@@ -62,7 +98,6 @@
                 }
             }
         }
-
     },
     "definitions": {
         "Player": {

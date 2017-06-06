@@ -18,6 +18,7 @@ class PlayersService {
     }
 
     addPlayer(info) {
+        console.log(info);
         // prevent a bit of bad/duplicate data
         if (!info || this.players.filter(p => (p.firstName === info.firstName && p.lastName === info.lastName)).length > 0) {
             return false;
