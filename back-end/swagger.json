@@ -35,7 +35,7 @@
                 "x-swagger-router-controller": "players",
                 "operationId": "postPlayer",
                 "consumes": [
-                    "application/x-www-form-urlencoded"
+                    "multipart/form-data"
                 ],
                 "produces": [
                     "application/json"
@@ -62,7 +62,10 @@
                         "type": "string"
                     }
                 ],
-                "responses": {
+                "responses": {                    
+                    "401": {
+                        "description": "Unauthorized"
+                    },
                     "405": {
                         "description": "Invalid input"
                     }

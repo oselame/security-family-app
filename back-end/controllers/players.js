@@ -59,7 +59,6 @@ class PlayersController {
     }
 
     postPlayer(req, res) {
-        console.log(req);
         var playerInfo = req.body;
         if (PlayersService.addPlayer(playerInfo)) {
             res.setHeader('Location', '/players/' + playerInfo.id);
