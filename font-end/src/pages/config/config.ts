@@ -10,6 +10,7 @@ import { Configuration } from './../../models/configuration-model';
   templateUrl: 'config.html',
 })
 export class ConfigPage {
+  configuration: Configuration = new Configuration();
 
   constructor(public viewController: ViewController,
     public configService : ConfigurationServices) {
@@ -17,6 +18,21 @@ export class ConfigPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConfigPage');
+  }
+
+  ionViewWillEnter() {
+    this.configService.existsConfiguration().then(
+      retorno => {
+          if (retorno) {
+            this.configService.getConfiguration().then(
+              config => {
+                this.configuration.name = config.name;
+                this.configuration.fone = config.fone;
+              }
+            )
+          }
+      }
+    )
   }
 
   onSaveConfig(config: Configuration) {

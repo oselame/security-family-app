@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { IonicStorageModule } from '@ionic/storage';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -22,7 +23,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ConfigPage,
-    NewMemberPage,    
+    NewMemberPage,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +46,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Geolocation,
     MemberServices,
     ConfigurationServices,
+    BackgroundGeolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

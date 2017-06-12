@@ -1,7 +1,6 @@
 import { NewMemberPage } from './../new-member/new-member';
 import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
-//import { ModalController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import { ConfigPage } from './../config/config';
@@ -10,6 +9,12 @@ import { Member } from './../../models/member-model';
 import { MemberServices } from './../../services/member-services';
 import { ConfigurationServices } from './../../services/configuration-services';
 import { Geolocation, GeolocationOptions } from '@ionic-native/geolocation';
+
+const options: GeolocationOptions = {
+    maximumAge: 0,
+    timeout: 40000,
+    enableHighAccuracy: true
+  };
 
 @Component({
   selector: 'page-home',
@@ -21,27 +26,26 @@ export class HomePage {
 
   members: Member[] = [];
 
-  options: GeolocationOptions = {
-    maximumAge: 0,
-    timeout: 40000,
-    enableHighAccuracy: true
-  };
-  
-  constructor(public navCtrl: NavController, 
+
+
+
+  constructor(public navCtrl: NavController,
     private geolocation: Geolocation,
     public alertCtrl: AlertController,
     public platform: Platform,
     public configServices : ConfigurationServices,
-    public memberService: MemberServices) {
+    public memberService: MemberServices
+  ) {
+
+
   }
 
   ionViewWillEnter(){
-    this.onLoadPage();    
+    this.onLoadPage();
   }
 
   ionViewDidLoad(){
     console.log("ionViewDidLoad");
-    // this.onLoadPage();
   }
 
   onLoadPage() {
@@ -77,14 +81,14 @@ export class HomePage {
         }]
     });
     alert.present();
-  }  
+  }
 
   onNewMember() {
     this.navCtrl.push(NewMemberPage);
   }
 
   showMap() {
-    this.geolocation.getCurrentPosition(this.options)
+    this.geolocation.getCurrentPosition(options)
           .then((resp) => {
             this.lat = resp.coords.latitude;
             this.lng = resp.coords.longitude;
@@ -104,5 +108,5 @@ export class HomePage {
         error => console.log(error)
       );
   }
-
+  
 }
