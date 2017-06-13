@@ -12,21 +12,21 @@ import { Member } from './../../models/member-model';
 })
 export class NewMemberPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
+  constructor(public navCtrl: NavController, public navParams: NavParams,
     public viewController: ViewController, public memberServices: MemberServices) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewMemberPage');
   }
 
-  
+
   onClosePage() {
     //this.viewController.dismiss();
     this.navCtrl.pop();
   }
 
   onAddNewMember(member: Member) {
-    this.memberServices.addNemMember(member);
+    this.memberServices.addNewMember(member);
     this.onClosePage();
   }
 

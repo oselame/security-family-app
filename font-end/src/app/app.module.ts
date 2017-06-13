@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ConfigPage } from './../pages/config/config';
 import { NewMemberPage } from './../pages/new-member/new-member';
+import { MemberListPage } from './../pages/member-list/member-list';
 
 import { MemberServices } from './../services/member-services';
 import { ConfigurationServices } from './../services/configuration-services';
@@ -18,12 +19,15 @@ import { ConfigurationServices } from './../services/configuration-services';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { UUID } from 'angular2-uuid';
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ConfigPage,
     NewMemberPage,
+    MemberListPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ConfigPage,
-    NewMemberPage
+    NewMemberPage,
+    MemberListPage
   ],
   providers: [
     StatusBar,
@@ -47,6 +52,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MemberServices,
     ConfigurationServices,
     BackgroundGeolocation,
+    UUID,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

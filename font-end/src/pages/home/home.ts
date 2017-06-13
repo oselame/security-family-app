@@ -11,10 +11,10 @@ import { ConfigurationServices } from './../../services/configuration-services';
 import { Geolocation, GeolocationOptions } from '@ionic-native/geolocation';
 
 const options: GeolocationOptions = {
-    maximumAge: 0,
-    timeout: 40000,
-    enableHighAccuracy: true
-  };
+  maximumAge: 0,
+  timeout: 40000,
+  enableHighAccuracy: true
+};
 
 @Component({
   selector: 'page-home',
@@ -26,47 +26,40 @@ export class HomePage {
 
   members: Member[] = [];
 
-
-
-
   constructor(public navCtrl: NavController,
-    private geolocation: Geolocation,
+    public geolocation: Geolocation,
     public alertCtrl: AlertController,
     public platform: Platform,
-    public configServices : ConfigurationServices,
-    public memberService: MemberServices
-  ) {
+    public configServices: ConfigurationServices,
+    public memberService: MemberServices) {}
 
-
-  }
-
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.onLoadPage();
   }
 
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     console.log("ionViewDidLoad");
   }
 
   onLoadPage() {
     this.configServices.existsConfiguration()
       .then(
-        (config) => {
-          if (!!config) {
-            this.loadMembers();
-            this.showMap()
-          } else {
-            this.navCtrl.push(ConfigPage);
-          }
+      (config) => {
+        if (!!config) {
+          this.loadMembers();
+          this.showMap()
+        } else {
+          this.navCtrl.push(ConfigPage);
         }
+      }
       ).catch(
-        (error) => {
-          console.log("Error is " + error);
-        }
+      (error) => {
+        console.log("Error is " + error);
+      }
       );
   }
 
-  exitApp(){
+  exitApp() {
     this.platform.exitApp();
   }
 
@@ -76,8 +69,8 @@ export class HomePage {
       subTitle: 'Your GPS is closed, I d\'not work without him',
       buttons: [
         {
-            text: 'OK',
-            handler: () => this.exitApp()
+          text: 'OK',
+          handler: () => this.exitApp()
         }]
     });
     alert.present();
@@ -89,24 +82,30 @@ export class HomePage {
 
   showMap() {
     this.geolocation.getCurrentPosition(options)
-          .then((resp) => {
-            this.lat = resp.coords.latitude;
-            this.lng = resp.coords.longitude;
-          }).catch((error) => {
-            console.log('Error getting location', error);
-            this.showAlert();
-          });
+      .then((resp) => {
+        this.lat = resp.coords.latitude;
+        this.lng = resp.coords.longitude;
+        this.addCurrentLocation(this.lat, this.lng);
+      }).catch((error) => {
+        console.log('Error getting location', error);
+        this.showAlert();
+      });
   }
 
   loadMembers() {
     this.memberService.getMembers()
       .then(
-        (members) => {
-          this.members = members;
-        }
+      (members) => {
+        this.members = members;
+      }
       ).catch(
-        error => console.log(error)
+      error => console.log(error)
       );
   }
-  
+
+  addCurrentLocation(lat:number, lng:number) {
+    
+  }
+
+
 }

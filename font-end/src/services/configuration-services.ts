@@ -7,9 +7,9 @@ import { Configuration } from './../models/configuration-model';
 
 @Injectable()
 export class ConfigurationServices {
-  
-  dbName : string = 'config';
-  
+
+  dbName : string = 'configdb';
+
   configuration : Configuration = new Configuration();
 
   constructor(private storage: Storage) {}
