@@ -2,10 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { AgmCoreModule } from 'angular2-google-maps/core';
-import { Geolocation } from '@ionic-native/geolocation';
 import { IonicStorageModule } from '@ionic/storage';
-import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { AgmCoreModule } from '@agm/core';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { Geolocation } from '@ionic-native/geolocation';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -15,11 +19,9 @@ import { MemberListPage } from './../pages/member-list/member-list';
 
 import { MemberServices } from './../services/member-services';
 import { ConfigurationServices } from './../services/configuration-services';
+import { LocationServices } from './../services/location-services';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { UUID } from 'angular2-uuid';
 
 @NgModule({
   declarations: [
@@ -49,10 +51,11 @@ import { UUID } from 'angular2-uuid';
     StatusBar,
     SplashScreen,
     Geolocation,
+    Diagnostic,
     MemberServices,
     ConfigurationServices,
-    BackgroundGeolocation,
-    UUID,
+    LocationServices,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
