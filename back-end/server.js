@@ -9,20 +9,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json 
 app.use(bodyParser.json())
 
-/*
-var apiRouter = express.Router();
-app.use('/api/v1', apiRouter);
-
-var PlayersController = require('./controllers/players');
-var pc = new PlayersController(apiRouter);
-
-var BoardsController = require('./controllers/boards');
-var bc = new BoardsController(apiRouter);
-
-var ScoresController = require('./controllers/scores');
-var sc = new ScoresController(apiRouter);
-*/
-
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -36,44 +22,15 @@ app.use('/api', apiRouter);
 var apiV1 = express.Router();
 apiRouter.use('/v1', apiV1);
 
-var playersApiV1 = express.Router();
-apiV1.use('/players', playersApiV1);
+var locationApiV1 = express.Router();
+apiV1.use('/location', locationApiV1);
 
-var boardsApiV1 = express.Router();
-apiV1.use('/leaderboards', boardsApiV1);
-
-var PlayersController = require('./controllers/players');
-var pc = new PlayersController(playersApiV1);
-var BoardsController = require('./controllers/boards');
-var bc = new BoardsController(boardsApiV1);
-var ScoresController = require('./controllers/scores');
-var sc = new ScoresController(boardsApiV1);
-
-
-var BoardsService = require('./services/boards');
-var b1 = BoardsService.addBoard('Total Score', 1);
-var b2 = BoardsService.addBoard('Times Died', 0);
-
-var PlayersService = require('./services/players');
-var p1 = PlayersService.addPlayer({ firstName: 'Ben', lastName: 'Sparks', displayName: 'Warspawn' });
-var p2 = PlayersService.addPlayer({ firstName: 'Joe', lastName: 'Blow', displayName: 'Joey558' });
-var p3 = PlayersService.addPlayer({ firstName: 'Danny', lastName: 'Danger', displayName: 'DD83' });
-
-var ScoresService = require('./services/scores');
-ScoresService.addScore(b1.id, p1.id, 3000);
-ScoresService.addScore(b1.id, p2.id, 2345);
-ScoresService.addScore(b1.id, p3.id, 15238);
-ScoresService.addScore(b2.id, p1.id, 33);
-ScoresService.addScore(b2.id, p2.id, 7);
-ScoresService.addScore(b2.id, p3.id, 67);
-
-
+var LocationController = require('./controllers/location-controller');
+var pc = new LocationController(locationApiV1);
 
 app.get('/', function(req, res) {
     res.send('Hello World!');
 });
-
-
 
 
 // Swagger Docs

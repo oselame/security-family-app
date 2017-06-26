@@ -2,15 +2,15 @@
 
 var uuid = require('node-uuid');
 
-class PlayersService {
+class LocationService {
     constructor() {
-        this.players = [];
+        this.locations = [];
     }
 
-    getPlayers() {
-        return this.players;
+    getLocations() {
+        return this.locations;
     }
-
+/*
     getSinglePlayer(playerId) {
         var player = this.players.filter(p => p.id === playerId)[0];
 
@@ -40,6 +40,7 @@ class PlayersService {
         }
         return false;
     }
+    */
 }
 
-module.exports = new PlayersService();
+module.exports = new LocationService();

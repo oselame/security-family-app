@@ -1,33 +1,26 @@
 'use strict';
 
-var PlayersService = require('../services/players');
+var LocationService = require('../services/location-service');
+var Location = require('../model/location');
 
-class PlayersController {
+class LocationController {
     constructor(router) {
         this.router = router;
         this.registerRoutes();
     }
 
     registerRoutes() {
-        /*
-        this.router.get('/players', this.getPlayers.bind(this));
-        this.router.get('/players/:id', this.getSinglePlayer.bind(this));
-        this.router.post('/players', this.postPlayer.bind(this));
-        this.router.put('/players/:id', this.putPlayer.bind(this));
-        */
-
-        this.router.get('/', this.getPlayers.bind(this));
-        this.router.get('/:id', this.getSinglePlayer.bind(this));
-        this.router.post('/', this.postPlayer.bind(this));
-        this.router.put('/:id', this.putPlayer.bind(this));
+        this.router.get('/', this.getLocations.bind(this));
+        //this.router.get('/:id', this.getSinglePlayer.bind(this));
+        //this.router.post('/', this.postPlayer.bind(this));
+       // this.router.put('/:id', this.putPlayer.bind(this));
     }
 
-    getPlayers(req, res) {
-        var players = PlayersService.getPlayers();
-        res.send(players);
+    getLocations(req, res) {
+        var locations = LocationService.getLocations();
+        res.send(locations);
     }
-
-    getSinglePlayer(req, res) {
+/*getSinglePlayer(req, res) {
         var id = req.params.id;
         var player = PlayersService.getSinglePlayer(id);
         if (!player) {
@@ -67,6 +60,7 @@ class PlayersController {
             res.sendStatus(500);
         }
     }
+    */
 }
 
-module.exports = PlayersController;
+module.exports = LocationController;
