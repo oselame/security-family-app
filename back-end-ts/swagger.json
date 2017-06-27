@@ -1,0 +1,96 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Security-Family API",
+        "description": "Manage various locations from your family.",
+        "version": "1.0.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "paths": {
+        "/location": {
+            "get": {
+                "summary": "",
+                "description": "Returns all locations",
+                "x-swagger-router-controller": "location",
+                "operationId": "getLocations",
+                "responses": {
+                    "200": {
+                        "description": "locations response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Location"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "",
+                "description": "Post any location",
+                "x-swagger-router-controller": "location",
+                "operationId": "postLocations",
+                "responses": {
+                    "200": {
+                        "description": "locations response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Location"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Location": {
+            "type": "object",
+            "allOf": [{
+                "$ref": "#/definitions/NewLocation"
+            }, {
+                "required": [
+                    "id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            }]
+        },
+        "NewLocation": {
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "date",
+                "latitude",
+                "longitude"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                }
+
+            }
+        }
+    }
+}
