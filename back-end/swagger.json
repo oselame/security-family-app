@@ -72,7 +72,6 @@
                 }
             }
         },
-
         "/location/{name}": {
             "get": {
                 "summary": "",
@@ -88,6 +87,41 @@
                     "description": "Name of member to fetch",
                     "required": true,
                     "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "location response",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Location"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/location/{name}/{date}": {
+            "get": {
+                "summary": "",
+                "description": "Returns all locations from user in date",
+                "x-swagger-router-controller": "location",
+                "operationId": "getLocationsByNameDate",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "name",
+                    "in": "path",
+                    "description": "Name for search",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "date",
+                    "in": "path",
+                    "description": "Date for search 'YYYYMMDD'",
+                    "required": true,
+                    "type": "number"
                 }],
                 "responses": {
                     "200": {
@@ -125,7 +159,8 @@
             "required": [
                 "id",
                 "name",
-                "datetime",
+                "date",
+                "time",
                 "latitude",
                 "longitude"
             ],
@@ -136,8 +171,11 @@
                 "name": {
                     "type": "string"
                 },
-                "datetime": {
-                    "type": "string"
+                "date": {
+                    "type": "number"
+                },
+                "time": {
+                    "type": "number"
                 },
                 "latitude": {
                     "type": "number"
