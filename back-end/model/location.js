@@ -1,8 +1,11 @@
 class Location {
-    constructor(
-        public id:string, public name: string, public date : string, public latitude: number, public longitude:number
-    ){}
-
+    /*
+    id: string;
+    name: string;
+    datetime: string;
+    latitude: string;
+    longitude: string;
+    */
 }
 
 module.exports = new Location();

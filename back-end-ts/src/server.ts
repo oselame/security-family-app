@@ -1,4 +1,4 @@
-/* app/server.ts */
+/* server.ts */
 
 // Import everything from express and assign it to the express variable
 import * as express from 'express';
@@ -22,7 +22,6 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
 // Swagger Docs
 var swaggerTools = require('swagger-tools');
 
@@ -33,7 +32,8 @@ let options = {
 }
 
 // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
-let swaggerDoc = require('./swagger.json');
+
+let swaggerDoc = require('./../swagger.json');
 
 // Initialize the Swagger middleware
 swaggerTools.initializeMiddleware(swaggerDoc, function(middleware) {
@@ -57,19 +57,5 @@ swaggerTools.initializeMiddleware(swaggerDoc, function(middleware) {
 
         console.log('listening at http://%s:%s', host, port);
     });
+    
 });
-
-/*
-
-// The port the express app will listen on
-const port: number = process.env.PORT || 3000;
-
-// Mount the WelcomeController at the /welcome route
-app.use('/welcome', WelcomeController);
-
-// Serve the application at the given port
-app.listen(port, () => {
-    // Success callback
-    console.log(`Listening at http://localhost:${port}/`);
-});
-*/

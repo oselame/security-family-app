@@ -10,6 +10,30 @@ class LocationService {
     getLocations() {
         return this.locations;
     }
+
+    addLocation(location) {
+        if (!location || this.locations.filter(loc => (loc.name === location.name 
+                    && loc.longitude === location.longitude
+                    && loc.latitude === location.latitude)).length > 0) {
+            return false;
+        }
+        location.id = uuid.v4();
+        location.datetime = new Date();
+
+        this.locations.push(location);
+
+        console.log(this.locations);
+        return true;
+    }
+
+    getLocationsByName(name) {
+        if (!name) {
+            return false;
+        }
+        var lcs = this.locations.filter( loc => (loc.name === name));
+        return lcs || null;
+    }
+
 /*
     getSinglePlayer(playerId) {
         var player = this.players.filter(p => p.id === playerId)[0];
