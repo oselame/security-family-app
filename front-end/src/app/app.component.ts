@@ -33,15 +33,9 @@ export class MyApp {
     ];
   }
 
-//  successCallback = (isAvailable) => { console.log('Is available? ' + isAvailable); };
-  //errorCallback = (e) => console.error(e);
-
   initializeApp() {
     this.platform.ready().then(() => {
-      this.isGpsLocationAvailable();
-      //this.isLocationEnabled();
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      //this.isGpsLocationAvailable();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
