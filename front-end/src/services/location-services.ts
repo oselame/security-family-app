@@ -1,43 +1,36 @@
 import { Injectable } from '@angular/core';
-import { HTTP } from '@ionic-native/http';
-
-import { Storage } from '@ionic/storage';
-import { Location } from './../models/location-model';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class LocationServices {
-  //private dbName: string = 'locationdb';
-  //private locations: Location[] = [];
 
-  server:string = 'https://arcane-mesa-62462.herokuapp.com/api/v1/'; 
+  urlApi = 'http://oselame.ddns.net:3000/api/v1/';
+  //http://oselame.ddns.net:3000/api/v1/location
 
-  constructor(private storage: Storage, private http: HTTP) {
+  locations:any;
+
+  constructor(public http: Http) {
     console.log('LocationServices Provider');
   }
 
-  addNewLocation(location: Location) {
-    //this.getLocations(memberid)
-    console.log(location);
-  }
-
   getLocations(memberid: string) {
-    memberid = "ADRIANO";
-    this.http.get(this.server + '/location/' + memberid, {}, {}).then(
-        locations => {
-          console.log(locations)
-        }
-      ).catch(
-        error => console.log(error)
-      );
-    // return this.storage.get(this.dbName)
-    //   .then(
-    //     locationParams => this.locations = locationParams
-    //   ).catch(
-    //     error => {
-    //       console.log(error);
-    //       this.locations = [];
-    //     }
-    //   );
+    // let url = this.urlApi + 'location';
+    // console.log("Url: " + url);
+    // this.locations = [];
+    // if (this.locations) {
+    //   return Promise.resolve(this.locations);
+    // }
+
+    return new Promise(resolve => {
+      this.http.get("http://oselame.ddns.net:3000/api/v1/location")
+        .map(res => res.json())
+        .subscribe(data => {
+            this.locations = data || [];
+            resolve(this.locations);
+        });
+
+    });
   }
 
 }

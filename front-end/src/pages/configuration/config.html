@@ -1,0 +1,30 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Configuration</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form #f="ngForm" (ngSubmit)="onSaveConfig(f.value)">
+        
+        <ion-item>
+            <ion-label>Name:</ion-label>
+            <ion-input type="text" name="name" [(ngModel)]="configuration.name" 
+                required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Fone:</ion-label>
+            <ion-input type="text" name="fone" [(ngModel)]="configuration.fone" 
+                required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Gravatar:</ion-label>
+            <ion-input type="text" name="gravatar" [(ngModel)]="configuration.gravatar" 
+                required></ion-input>
+        </ion-item>
+        <button ion-button block [disabled]="!f.valid">Save</button>
+    </form>
+</ion-content>

@@ -1,61 +1,54 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { IonicStorageModule } from '@ionic/storage';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { AgmCoreModule } from '@agm/core';
-import { Diagnostic } from '@ionic-native/diagnostic';
-import { Geolocation } from '@ionic-native/geolocation';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
-
+import { IonicStorageModule } from '@ionic/storage';
+import 'rxjs/add/operator/map';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ConfigPage } from './../pages/config/config';
-import { NewMemberPage } from './../pages/new-member/new-member';
-import { MemberListPage } from './../pages/member-list/member-list';
+import { ConfigPage } from './../pages/configuration/config';
 
-import { MemberServices } from './../services/member-services';
-import { ConfigurationServices } from './../services/configuration-services';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+
 import { LocationServices } from './../services/location-services';
-
-
+import { BackgroudLocationServices } from './../services/background-location-services';
+import { ConfigurationServices } from './../services/configuration-services';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ConfigPage,
-    NewMemberPage,
-    MemberListPage
+    ConfigPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    HttpModule,
     IonicStorageModule.forRoot(),
+    IonicModule.forRoot(MyApp),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA2efegxAbKYZcLNgiWsSWofkVEpA-S83E'
-    }),
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ConfigPage,
-    NewMemberPage,
-    MemberListPage
+    ConfigPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    Geolocation,
-    Diagnostic,
-    MemberServices,
-    ConfigurationServices,
+    BackgroundGeolocation,
+    BackgroudLocationServices,
     LocationServices,
-    InAppBrowser,
+    ConfigurationServices,
+    HttpModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

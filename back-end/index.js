@@ -25,14 +25,30 @@ apiRouter.use('/v1', apiV1);
 var locationApiV1 = express.Router();
 apiV1.use('/location', locationApiV1);
 
+var syncApiV1 = express.Router();
+apiV1.use('/sync', syncApiV1);
+
 var LocationController = require('./controllers/location-controller');
 var pc = new LocationController(locationApiV1);
+
+var SyncController = require('./controllers/sync-controller');
+var pc = new SyncController(syncApiV1);
+
 
 app.get('/', function(req, res) {
     res.send('Hello World!');
 });
 
+// start the server
+var server = app.listen(3000, function() {
+    var host = server.address().address;
+    host = (host === '::' ? 'localhost' : host);
+    var port = server.address().port;
 
+    console.log('listening at http://%s:%s', host, port);
+});
+
+/*
 // Swagger Docs
 var swaggerTools = require('swagger-tools');
 // swaggerRouter configuration
@@ -67,3 +83,4 @@ swaggerTools.initializeMiddleware(swaggerDoc, function(middleware) {
         console.log('listening at http://%s:%s', host, port);
     });
 });
+*/
