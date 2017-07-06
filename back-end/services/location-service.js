@@ -17,7 +17,7 @@ class LocationService {
 
     addLocation(location) {
         this.locations.push(location[0]);
-        console.log("Regs: " + location.length);
+        console.log("Regs: " + this.locations.length);
         return true;
     }
 }

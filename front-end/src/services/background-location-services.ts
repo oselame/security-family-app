@@ -11,29 +11,12 @@ export class BackgroudLocationServices {
     urlApi = 'http://oselame.ddns.net:3000/api/v1/location'; 
     syncUrlApi = 'http://oselame.ddns.net:3000/api/v1/sync'; 
     
-    logs:any = '';
-    teste:string = "";
-    name : 'adriano';
-
     locations:any;
     configuration: Configuration;
 
   constructor(public backgroundGeolocation: BackgroundGeolocation,
     public configurationServices: ConfigurationServices) {
-    
     this.loadConfiguration();
-    /*
-    this.backgroundGeolocation.configure(this.config).subscribe(
-      (location: BackgroundGeolocationResponse) => {
-        res => console.log(res)      
-      }
-    );
-    this.backgroundGeolocation.watchLocationMode().then(
-      res => console.log(res)      
-    ).catch(
-      error => console.log(error)
-    )
-    */
   }
 
   startBackgroundGeolocation() {
@@ -45,7 +28,7 @@ export class BackgroudLocationServices {
     this.backgroundGeolocation.stop();
   }
 
-  getBackgroundGeolocationConfig(name) {
+  getBackgroundGeolocationConfig(userName) {
       let config: BackgroundGeolocationConfig = {
               stationaryRadius: 20,
               distanceFilter: 30,
@@ -68,14 +51,13 @@ export class BackgroudLocationServices {
               url: this.urlApi,
               syncUrl: this.syncUrlApi,
               syncThreshold: 100,
-              httpHeaders: { 'name': name },
+              httpHeaders: { 'name': userName },
               pauseLocationUpdates: false,
               saveBatteryOnBackground: false,
               maxLocations: 100
       };
       return config;
   };
-
 
   getLocations() {
     if (this.locations) {
@@ -124,8 +106,6 @@ export class BackgroudLocationServices {
           ).catch(
             error => console.log(error)
           )
-
-
         }
       ).catch(
         error => console.log(error)

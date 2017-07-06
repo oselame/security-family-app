@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map';
 export class LocationServices {
 
   urlApi = 'http://oselame.ddns.net:3000/api/v1/';
-  //http://oselame.ddns.net:3000/api/v1/location
 
   locations:any;
 
@@ -14,14 +13,19 @@ export class LocationServices {
     console.log('LocationServices Provider');
   }
 
-  getLocations(memberid: string) {
-    // let url = this.urlApi + 'location';
-    // console.log("Url: " + url);
-    // this.locations = [];
-    // if (this.locations) {
-    //   return Promise.resolve(this.locations);
-    // }
+  getLocations() {
+    return new Promise(resolve => {
+      this.http.get("http://oselame.ddns.net:3000/api/v1/location")
+        .map(res => res.json())
+        .subscribe(data => {
+            this.locations = data || [];
+            resolve(this.locations);
+        });
 
+    });
+  }
+
+  getLocationsByName(memberid: string) {
     return new Promise(resolve => {
       this.http.get("http://oselame.ddns.net:3000/api/v1/location")
         .map(res => res.json())

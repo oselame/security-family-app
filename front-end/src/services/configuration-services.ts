@@ -1,48 +1,45 @@
 import { Injectable } from '@angular/core';
 
-import { Storage } from '@ionic/storage';
-
+import { AppPreferences } from '@ionic-native/app-preferences';
 import { Configuration } from './../models/configuration-model';
+import { Config } from './../config/config';
 
 
 @Injectable()
 export class ConfigurationServices {
 
-  dbName : string = 'configdb';
+  constructor(private appPreferences: AppPreferences) {}
 
-  configuration : Configuration = new Configuration();
-
-  constructor(private storage: Storage) {}
-
-  saveConfiguration(configuration : Configuration) {
-    this.storage.set(this.dbName, configuration);
-  }
-
-  existsConfiguration() {
-    return this.storage.get(this.dbName)
-      .then(
-        (config) => {
-          return config == null ? false : true;
-        }
-      ).catch(
-        (error) => {
-          console.log("ConfigurationServices.error is " + error);
-          return false;
-        }
-      );
-  }
-
-  getConfiguration() {
-    return this.storage.get(this.dbName)
-      .then(
-        (config) => {
-          return this.configuration == null ? new Configuration() : config;
-        }
-      ).catch(
-        (error) => {
+  saveConfiguration(configuration: Configuration):Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.appPreferences.store(Config.SECURITYDB, Config.USER, configuration)
+        .then( () => resolve(true) )
+        .catch( error => {
           console.log(error);
-          return new Configuration();
-        }
-      );
+          reject(false) 
+        });
+    })
+  }
+
+  getConfiguration():Promise<Configuration> {
+    return new Promise(resolve => {
+      this.appPreferences.fetch(Config.SECURITYDB, Config.USER)
+        .then(config => resolve(config))
+        .catch(error => console.log(error));
+      });
+  }
+
+  existsConfigUser():Promise<boolean> {
+    return new Promise( (resolve, reject) => {
+      this.appPreferences.fetch(Config.SECURITYDB, Config.USER)
+        .then(config => {
+          if (!!config.name || !!config.fone) {
+            resolve(true);
+          } else {
+            reject(false);
+          }
+        })
+        .catch(error => reject(false));
+    });
   }
 }

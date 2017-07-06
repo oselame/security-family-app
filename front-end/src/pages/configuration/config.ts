@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ViewController } from 'ionic-angular';
+
 import { ConfigurationServices } from './../../services/configuration-services';
 
 import { Configuration } from './../../models/configuration-model';
@@ -13,32 +14,25 @@ export class ConfigPage {
   configuration: Configuration = new Configuration();
 
   constructor(public viewController: ViewController,
-    public configService : ConfigurationServices) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfigPage');
+    private configService : ConfigurationServices) {
   }
 
   ionViewWillEnter() {
-    this.configService.existsConfiguration().then(
-      retorno => {
-          if (retorno) {
-            this.configService.getConfiguration().then(
-              config => {
-                this.configuration.name = config.name;
-                this.configuration.fone = config.fone;
-                this.configuration.gravatar = config.gravatar;
-              }
-            )
-          }
-      }
-    )
+    this.configService.getConfiguration()
+      .then(
+        config => this.configuration = config
+      );
   }
 
   onSaveConfig(config: Configuration) {
-    this.configService.saveConfiguration(config);
-    this.viewController.dismiss();
+    this.configService.saveConfiguration(config)
+      .then(
+        sucess => {
+          this.viewController.dismiss();
+        }
+      ).catch(
+        error => console.log(error)
+      );
   }
 
 }
