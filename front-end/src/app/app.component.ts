@@ -9,6 +9,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { HomePage } from '../pages/home/home';
 import { ConfigPage } from './../pages/configuration/config';
 import { PrincipalPage } from './../pages/principal/principal';
+import { NewMemberPage } from './../pages/new-member/new-member';
+import { MemberListPage } from './../pages/member-list/member-list';
 
 import { ConfigurationServices } from './../services/configuration-services';
 
@@ -41,7 +43,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Configuration', component: ConfigPage }
+      { title: 'Configuration', component: ConfigPage },
+      { title: 'Members', component: MemberListPage }
+      
     ];
 
   }

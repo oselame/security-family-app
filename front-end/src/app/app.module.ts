@@ -14,6 +14,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ConfigPage } from './../pages/configuration/config';
 import { PrincipalPage } from './../pages/principal/principal';
+import { MemberListPage } from './../pages/member-list/member-list';
+import { NewMemberPage } from './../pages/new-member/new-member';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,6 +23,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 
 import { LocationServices } from './../services/location-services';
+import { MemberServices } from './../services/member-services';
 import { BackgroudLocationServices } from './../services/background-location-services';
 import { ConfigurationServices } from './../services/configuration-services';
 
@@ -30,7 +33,9 @@ import { ConfigurationServices } from './../services/configuration-services';
     MyApp,
     HomePage,
     ConfigPage,
-    PrincipalPage
+    PrincipalPage,
+    NewMemberPage,
+    MemberListPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,9 @@ import { ConfigurationServices } from './../services/configuration-services';
     MyApp,
     HomePage,
     ConfigPage,
-    PrincipalPage
+    PrincipalPage,
+    NewMemberPage,
+    MemberListPage
   ],
   providers: [
     StatusBar,
@@ -57,6 +64,7 @@ import { ConfigurationServices } from './../services/configuration-services';
     BackgroundGeolocation,
     BackgroudLocationServices,
     LocationServices,
+    MemberServices,
     ConfigurationServices,
     AppPreferences,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

@@ -9,7 +9,8 @@ export class Config {
 
     static readonly SECURITYDB: string = "securitydb";
     static readonly USER: string = "user";
-    static readonly USER_NAME: string = "user_name";
-    static readonly USER_FONE: string = "user_fone";
+    static readonly MEMBERS: string = "members";
+    //static readonly USER_NAME: string = "user_name";
+    //static readonly USER_FONE: string = "user_fone";
 
 }

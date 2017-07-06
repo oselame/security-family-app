@@ -21,7 +21,6 @@ export class NewMemberPage {
 
 
   onClosePage() {
-    //this.viewController.dismiss();
     this.navCtrl.pop();
   }
 
