@@ -4,7 +4,7 @@ import { AppPreferences } from '@ionic-native/app-preferences';
 import { Config } from './../config/config';
 
 import { Member } from './../models/member-model';
-import { UUID } from 'angular2-uuid';
+//import { UUID } from 'angular2-uuid';
 
 
 @Injectable()

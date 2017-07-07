@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 import { NewMemberPage } from './../new-member/new-member';
 import { MemberServices } from './../../services/member-services';
 import { Member } from './../../models/member-model';
 
-@IonicPage()
 @Component({
   selector: 'page-member-list',
   templateUrl: 'member-list.html',
