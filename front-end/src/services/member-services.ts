@@ -16,16 +16,16 @@ export class MemberServices {
     console.log('Hello MemberServices Provider');
   }
 
-  addNewMember(member : Member):Promise<boolean> {
+  addNewMember(member : Member):Promise<any> {
     return new Promise((resolve, reject) => {
       this.getMembers().then(
         members => {
           this.members = members;
           this.members.push(member);
           this.appPreferences.store(Config.SECURITYDB, Config.MEMBERS, this.members);
-          resolve(true);
+          resolve("true");
         }
-      ).catch(() => reject(false));
+      ).catch((error) => reject(error));
     });
   }
 

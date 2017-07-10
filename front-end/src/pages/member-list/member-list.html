@@ -2,15 +2,15 @@
   <ion-navbar>
     <ion-title>Members</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="royal">
-        <ion-icon name="person-add" (click)="addNewMember()"></ion-icon>
+      <button ion-button icon-only color="royal" (click)="addNewMember()">
+        <ion-icon name="person-add"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let member of members">
+  <ion-card *ngFor="let member of provider.members">
     <ion-card-header>
       {{ member.name }}
     </ion-card-header>

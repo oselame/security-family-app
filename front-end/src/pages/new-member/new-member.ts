@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 
-import { MemberServices } from './../../services/member-services';
+import { MemberProvider } from './../../providers/member/member.provider';
 import { Member } from './../../models/member-model';
 
 @Component({
@@ -12,8 +12,11 @@ import { Member } from './../../models/member-model';
 })
 export class NewMemberPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public viewController: ViewController, public memberServices: MemberServices) {}
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public viewController: ViewController,
+    private alertCtrl: AlertController,
+    public provider: MemberProvider) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewMemberPage');
@@ -25,8 +28,20 @@ export class NewMemberPage {
   }
 
   onAddNewMember(member: Member) {
-    this.memberServices.addNewMember(member);
-    this.onClosePage();
+    this.provider.addNewMember(member)
+      .then( () =>  this.onClosePage())
+      .catch( () => this.openAlertErroSalvar())
+  }
+
+  openAlertErroSalvar(){
+    let alert = this.alertCtrl.create({
+            title: "New Member",
+            subTitle: "Error to save a member",
+            buttons: [{
+              text: 'Ok'
+            }]
+        });
+    alert.present();
   }
 
 }

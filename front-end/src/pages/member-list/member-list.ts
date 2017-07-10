@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { NewMemberPage } from './../new-member/new-member';
-import { MemberServices } from './../../services/member-services';
-import { Member } from './../../models/member-model';
+
+import { MemberProvider } from './../../providers/member/member.provider';
 
 @Component({
   selector: 'page-member-list',
@@ -11,9 +11,8 @@ import { Member } from './../../models/member-model';
 })
 export class MemberListPage {
 
-  members: Member[] = [];
-
-  constructor(public navCtrl: NavController, public memberServices: MemberServices) {
+  constructor(public navCtrl: NavController, 
+    public provider: MemberProvider) {
   }
 
   ionViewDidLoad() {
@@ -21,19 +20,11 @@ export class MemberListPage {
   }
 
   ionViewDidEnter() {
-    this.getMembers();
+    this.getAllMembers();
   }
 
-  getMembers() {
-    this.memberServices.getMembers()
-      .then(
-         (members) => {
-           this.members = members
-         }
-      )
-      .catch(
-        error => console.log(error)
-      );
+  getAllMembers() {
+    this.provider.getAllMembers();
   }
 
   addNewMember() {

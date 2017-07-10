@@ -1,9 +1,6 @@
 export class Member {
-    id: string;
-    name : string;
-    fone : string;
-    location: {
-        lat: number,
-        lng: number
+
+    constructor(public name:string, public fone:string) {
+
     }
 }
