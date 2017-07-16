@@ -4,7 +4,10 @@ var app = express();
 var bodyParser = require('body-parser');
 
 // parse application/x-www-form-urlencoded 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
+
+var mysql = require('mysql');
+var connection  = require('express-myconnection');
  
 // parse application/json 
 app.use(bodyParser.json())
@@ -14,6 +17,16 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
+app.use(
+   connection(mysql,{
+     host: 'localhost',
+     user: 'root',
+     password : 'root',
+     port : 3306, 
+     database:'securitydb'
+   },'request')
+);
 
 
 var apiRouter = express.Router();
@@ -28,12 +41,17 @@ apiV1.use('/location', locationApiV1);
 var syncApiV1 = express.Router();
 apiV1.use('/sync', syncApiV1);
 
+var memberApiV1 = express.Router();
+apiV1.use('/member', memberApiV1);
+
 var LocationController = require('./controllers/location-controller');
-var pc = new LocationController(locationApiV1);
+var locationController = new LocationController(locationApiV1);
 
 var SyncController = require('./controllers/sync-controller');
-var pc = new SyncController(syncApiV1);
+var syncController = new SyncController(syncApiV1);
 
+var MemberController = require('./controllers/member-controller');
+var memberController = new MemberController(memberApiV1);
 
 app.get('/', function(req, res) {
     res.send('Hello World!');

@@ -11,6 +11,8 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "express-myconnection": "^1.0.4",
+    "mysql": "^2.13.0",
     "node-uuid": "^1.4.8",
     "swagger-tools": "^0.10.1"
   }
