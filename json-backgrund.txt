@@ -1,0 +1,16 @@
+[
+[
+{
+"provider": "gps",
+"time": 1499000336696,
+"latitude": -27.68007769,
+"longitude": -48.64474762,
+"accuracy": 28,
+"altitude": -30,
+"locationProvider": 0
+}
+]
+]
+
+
+http://www.tiagoporto.com/blog/tutorial-de-configuracao-do-ambiente-ionic-android-no-windows/
