@@ -1,0 +1,26 @@
+[
+  {
+    "provider": "gps",
+    "time": 1499099354852,
+    "latitude": -27.68012319,
+    "longitude": -48.64488835,
+    "accuracy": 9,
+    "speed": 0.9489467740058899,
+    "altitude": -2,
+    "bearing": 220,
+    "locationProvider": 0,
+    "name": "oselame"
+  },
+  {
+    "provider": "gps",
+    "time": 1499099834859,
+    "latitude": -27.68082938,
+    "longitude": -48.64654409,
+    "accuracy": 20,
+    "speed": 12.59633731842041,
+    "altitude": 23,
+    "bearing": 281.3999938964844,
+    "locationProvider": 0,
+    "name": "oselame"
+  }
+]
