@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { MemberServices } from './../../services/member-services';
-
-import { Member } from './../../models/member-model';
-
+import { MemberServices } from './../services/member-services';
+import { Member } from './../models/member-model';
 
 @Injectable()
 export class MemberProvider {

@@ -13,9 +13,15 @@ class LocationController {
         this.router.post('/', this.postLocation.bind(this));
     }
 
-    getLocations(req, res) {
-        var locations = SyncService.getLocations();
-        res.send(locations);
+   getLocations(req, res) {
+        console.log("LocationController.getLocations()");
+        SyncService.getAllLocations(function(err, rows) {
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(rows);
+            }
+        });
     }
 
     postLocation(req, res) {

@@ -44,7 +44,6 @@ export class MyApp {
     this.pages = [
       { title: 'Configuration', component: ConfigPage },
       { title: 'Members', component: MemberListPage }
-      
     ];
 
   }
@@ -95,14 +94,27 @@ export class MyApp {
 
   isLocationAuthorizated():Promise<any> {
     return new Promise((resolve, reject) => {
-      this.diagnostic.requestLocationAuthorization(Config.LOCATIONAUTHORIZATION_WHEN_IN_USE)
+      resolve(Config.SUCCESS)
+      /*
+      this.diagnostic.getLocationAuthorizationStatus()
         .then( value => {
+          console.log("Autorization: " + value);
           resolve(Config.SUCCESS);
         })
         .catch( error => {
           console.log("Erro location autorization: " + error);
           reject(Config.ERRO_NOT_AUTHORIZED);
         });
+      this.diagnostic.requestLocationAuthorization(Config.LOCATIONAUTHORIZATION_ALWAYS)
+        .then( value => {
+          console.log("Autorization: " + value);
+          resolve(Config.SUCCESS);
+        })
+        .catch( error => {
+          console.log("Erro location autorization: " + error);
+          reject(Config.ERRO_NOT_AUTHORIZED);
+        });
+      */
     })
   }
 

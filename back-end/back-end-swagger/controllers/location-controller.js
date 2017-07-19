@@ -12,6 +12,7 @@ class LocationController {
         this.router.get('/', this.getLocations.bind(this));
         this.router.get('/:name', this.getLocationsByName.bind(this));
         this.router.get('/:name/today', this.getLocationsByNameToday.bind(this));
+        this.router.post('/', this.saveLocation.bind(this));
     }
 
     getLocations(req, res) {
@@ -55,10 +56,20 @@ class LocationController {
                 if (err) {
                     res.json(err);
                 } else {
-                    res.json(rows)
+                    res.json(rows);
                 }
             }
         );
+    }
+
+    saveLocation(req, res) {
+        LocationService.saveLocation(req.body, function(err, count) {
+            if (err) {
+                    res.json(err);
+                } else {
+                    res.json(count);
+                } 
+        })
     }
 
 }

@@ -4,10 +4,7 @@ import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { BackgroudLocationServices } from './../../services/background-location-services';
-import { LocationServices } from './../../services/location-services';
-//import { ConfigurationServices } from './../../services/configuration-services';
-
-//import { Configuration } from './../../models/configuration-model';
+import { LocationProvider } from './../../providers/location.provider';
 
 @Component({
   selector: 'page-principal',
@@ -23,7 +20,7 @@ export class PrincipalPage {
   constructor(public navCtrl: NavController, 
     public backgroudLocationServices: BackgroudLocationServices,
     public geolocation: Geolocation,
-    public locationServices: LocationServices,
+    public locationProvider: LocationProvider,
     //public configurationServices: ConfigurationServices
     ) {
       let geoLocationOptions = { 
@@ -52,16 +49,8 @@ export class PrincipalPage {
   }
 
   getLocations() {
-    this.locationServices.getLocations()
-      .then(
-        locs => {
-          this.locations = locs;
-        }
-      ).catch(
-        errors => {
-          console.log(errors);
-        }
-      );
+    console.log("PrincipalPage.getLocations()");
+    this.locationProvider.loadLocations();
   }
 
 

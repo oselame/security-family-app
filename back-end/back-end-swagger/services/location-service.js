@@ -1,7 +1,6 @@
 'use strict';
 
-//var uuid = require('node-uuid');
- var db = require('../dbconnections.js');
+var db = require('../dbconnections.js');
 
 class LocationService {
     
@@ -25,7 +24,7 @@ class LocationService {
     }
 
     saveLocation(location, callback) {
-        loc = location[0];
+        var loc = location[0];
         console.log("LocationService.saveLocation: " + JSON.stringify(loc));
         return db.query("insert into eseflocation (provider, time, latitude, longitude, accuracy, altitude, locationProvider, name, speed, bearing) VALUES (?,?,?,?,?,?,?,?,?,?)", 
                         [loc.provider, loc.time, loc.latitude, loc.longitude, loc.accuracy, 

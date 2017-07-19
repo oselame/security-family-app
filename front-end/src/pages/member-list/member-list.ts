@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 
 import { NewMemberPage } from './../new-member/new-member';
 
-import { MemberProvider } from './../../providers/member/member.provider';
+import { MemberProvider } from './../../providers/member.provider';
 
 @Component({
   selector: 'page-member-list',

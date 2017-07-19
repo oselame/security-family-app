@@ -11,7 +11,7 @@ export class BackgroudLocationServices {
     urlApi = 'http://oselame.ddns.net:3000/api/v1/location'; 
     syncUrlApi = 'http://oselame.ddns.net:3000/api/v1/sync'; 
     
-    locations:any;
+    //locations:any;
     configuration: Configuration;
 
   constructor(public backgroundGeolocation: BackgroundGeolocation,
@@ -56,22 +56,18 @@ export class BackgroudLocationServices {
               saveBatteryOnBackground: false,
               maxLocations: 100
       };
+            
       return config;
   };
 
   getLocations() {
-    if (this.locations) {
-      return Promise.resolve(this.locations);
-    }
     return new Promise(resolve => {
         this.backgroundGeolocation.getLocations()
         .then(
             locationsParam => {
-              this.locations = locationsParam; 
               resolve(locationsParam);
             }
-        )
-        .catch(
+        ).catch(
             error => console.log(error)
         )
     });

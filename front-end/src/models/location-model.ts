@@ -1,8 +1,15 @@
 export class Location {
-    memberid: string;
-    datetime: string;
-    location: {
-        lat: number,
-        lng: number
-    }
+    id: number;
+    provider:string;
+    time:number;
+    latitude:number;
+    longitude:number;
+    accuracy:number;
+    speed:number;
+    altitude:number;
+    bearing:number;
+    locationProvider:number;
+    name:string;
+
+    constructor(){}
 }

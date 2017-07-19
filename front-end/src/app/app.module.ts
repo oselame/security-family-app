@@ -27,7 +27,8 @@ import { MemberServices } from './../services/member-services';
 import { BackgroudLocationServices } from './../services/background-location-services';
 import { ConfigurationServices } from './../services/configuration-services';
 
-import { MemberProvider } from './../providers/member/member.provider';
+import { MemberProvider } from './../providers/member.provider';
+import { LocationProvider } from './../providers/location.provider';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { MemberProvider } from './../providers/member/member.provider';
     ConfigurationServices,
     AppPreferences,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MemberProvider
+    MemberProvider,
+    LocationProvider
   ]
 })
 export class AppModule {}

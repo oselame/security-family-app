@@ -1,20 +1,17 @@
 'use strict';
 
-var uuid = require('node-uuid');
+var db = require('../dbconnections.js');
 
 class SyncService {
     constructor() {
-        this.locations = [];
     }
 
-    getLocations() {
-        return this.locations;
+    getAllLocations(callback) {
+        return db.query("select * from esefsync", callback);
     }
 
-    addLocation(location) {
-        console.log(location);
-        this.locations.push(location);
-        return true;
+    addLocation(location, callback) {
+        return db.query("insert into esefsync (deSysnc) VALUES (?)", [location]);
     }
 }
 

@@ -3,4 +3,23 @@ page-principal {
       width: 100%;
       height: 100%;
     }
+
+    scroll-content{
+	    background-color: rgb(41, 221, 171);
+    }
+
+    ion-scroll.item{
+      height: 40px; 
+      width: 40px;
+    }
+
+    ion-col{
+      padding: 5px;
+      border: solid 1px #DDD;
+      background-color: rgb(221, 41, 91);
+      color: #FFF;
+      border-radius: 3px;
+      margin: 5px;
+    }
+
 }

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 
-import { MemberProvider } from './../../providers/member/member.provider';
+import { MemberProvider } from './../../providers/member.provider';
 import { Member } from './../../models/member-model';
 
 @Component({
