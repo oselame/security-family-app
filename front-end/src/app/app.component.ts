@@ -8,7 +8,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { HomePage } from '../pages/home/home';
 import { ConfigPage } from './../pages/configuration/config';
-import { PrincipalPage } from './../pages/principal/principal';
+//import { PrincipalPage } from './../pages/principal/principal';
 import { MemberListPage } from './../pages/member-list/member-list';
 
 import { ConfigurationServices } from './../services/configuration-services';
@@ -57,7 +57,7 @@ export class MyApp {
             this.geolocation.getCurrentPosition(GEOLOCATION_OPTIONS)
               .then((resp) => {  
                   console.log('Current Position Loaded');
-                  this.rootPage = PrincipalPage;
+                  //this.rootPage = PrincipalPage;
                   this.existUserConfig()
                     .then(() => {
                       console.log('User config exists');

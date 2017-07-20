@@ -10,14 +10,10 @@ export class ConfigurationServices {
 
   constructor(private appPreferences: AppPreferences) {}
 
-  saveConfiguration(configuration: Configuration):Promise<any> {
-    return new Promise((resolve, reject) => {
+  saveConfiguration(configuration: Configuration):Promise<Configuration> {
+    return new Promise(resolve => {
       this.appPreferences.store(Config.SECURITYDB, Config.USER, configuration)
-        .then( () => resolve(true) )
-        .catch( error => {
-          console.log(error);
-          reject(false) 
-        });
+        .then( config => resolve(config) );
     })
   }
 

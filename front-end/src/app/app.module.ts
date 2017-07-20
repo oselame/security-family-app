@@ -29,6 +29,7 @@ import { ConfigurationServices } from './../services/configuration-services';
 
 import { MemberProvider } from './../providers/member.provider';
 import { LocationProvider } from './../providers/location.provider';
+import { ConfigProvider } from './../providers/config.provider';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { LocationProvider } from './../providers/location.provider';
     AppPreferences,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MemberProvider,
-    LocationProvider
+    LocationProvider,
+    ConfigProvider
   ]
 })
 export class AppModule {}

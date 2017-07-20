@@ -9,24 +9,22 @@
 
 <ion-content padding>
     <form #f="ngForm" (ngSubmit)="onSaveConfig(f.value)">
-        
+        <input type="hidden" name="id" [(ngModel)]="provider.configuration.id" />        
         <ion-item>
             <ion-label>Name:</ion-label>
-            <ion-input type="text" name="name" [(ngModel)]="configuration.name" 
+            <ion-input type="text" name="name" [(ngModel)]="provider.configuration.name" 
                 required></ion-input>
         </ion-item>
         <ion-item>
             <ion-label>Fone:</ion-label>
-            <ion-input type="text" name="fone" [(ngModel)]="configuration.fone" 
+            <ion-input type="text" name="fone" [(ngModel)]="provider.configuration.fone" 
                 required></ion-input>
         </ion-item>
-        <!--
         <ion-item>
-            <ion-label>Gravatar:</ion-label>
-            <ion-input type="text" name="gravatar" [(ngModel)]="configuration.gravatar" 
+            <ion-label>E-mail:</ion-label>
+            <ion-input type="email" name="email" [(ngModel)]="provider.configuration.email" 
                 required></ion-input>
         </ion-item>
-        -->
         <button ion-button block [disabled]="!f.valid">Save</button>
     </form>
 </ion-content>
