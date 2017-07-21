@@ -32,6 +32,11 @@ class LocationService {
                         callback);
     }
 
+    clearLocations(callback) {
+        console.log("LocationService.clearLocations");
+        return db.query("delete from eseflocation", callback);
+    }
+
 }
 
 module.exports = new LocationService();

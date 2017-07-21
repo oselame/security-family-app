@@ -30,6 +30,7 @@ import { ConfigurationServices } from './../services/configuration-services';
 import { MemberProvider } from './../providers/member.provider';
 import { LocationProvider } from './../providers/location.provider';
 import { ConfigProvider } from './../providers/config.provider';
+import { HomeProvider } from './../providers/home.provider';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,9 @@ import { ConfigProvider } from './../providers/config.provider';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MemberProvider,
     LocationProvider,
-    ConfigProvider
+    ConfigProvider,
+    MemberProvider,
+    HomeProvider    
   ]
 })
 export class AppModule {}

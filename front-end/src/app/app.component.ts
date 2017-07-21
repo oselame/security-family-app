@@ -50,41 +50,44 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-
-      this.isLocationAuthorizated()
-        .then((resp) => {
-            console.log('Localization Autorized');
-            this.geolocation.getCurrentPosition(GEOLOCATION_OPTIONS)
-              .then((resp) => {  
-                  console.log('Current Position Loaded');
-                  //this.rootPage = PrincipalPage;
-                  this.existUserConfig()
-                    .then(() => {
-                      console.log('User config exists');
-                    }).catch(
-                      () => {
-                        console.log('User config no exists');
-                        this.nav.push(ConfigPage);
-                      }
-                    );
-                    this.statusBar.styleDefault();
-                    this.splashScreen.hide();
-              }).catch((error) => {
-                console.log('Current Position not loaded: ' + error.message);
-                this.openAlertNotGeolocation("O App não conseguiu pegar sua localização", 
-                    "Por favor ligue sua localização e tente novamente.");
-              });
-          }
-        ).catch((error) => {
-            console.log('Localization not autorized');
-            if (error === Config.ERRO_GPS_DISABLED){
-              this.openAlertNotGeolocation("O serviço de localização esta desligado", "Por favor ligue sua localização e tente novamente.");
-            } else {
-              this.openAlertNotGeolocation("Você deve permitir que o aplicativo pegue sua localização", "Por favor autorize o serviço de localização e tente novamente.");        
-            }
-            console.log("Error " + error.message);
-          }
-        );
+          /*
+          this.isLocationAuthorizated()
+            .then((resp) => {
+                console.log('Localization Autorized');
+                this.geolocation.getCurrentPosition(GEOLOCATION_OPTIONS)
+                  .then((resp) => {  
+                      console.log('Current Position Loaded');
+                      //this.rootPage = PrincipalPage;
+                      this.existUserConfig()
+                        .then(() => {
+                          console.log('User config exists');
+                        }).catch(
+                          () => {
+                            console.log('User config no exists');
+                            this.nav.push(ConfigPage);
+                          }
+                        );
+                        this.statusBar.styleDefault();
+                        this.splashScreen.hide();
+                  }).catch((error) => {
+                    console.log('Current Position not loaded: ' + error.message);
+                    this.openAlertNotGeolocation("O App não conseguiu pegar sua localização", 
+                        "Por favor ligue sua localização e tente novamente.");
+                  });
+              }
+            ).catch((error) => {
+                console.log('Localization not autorized');
+                if (error === Config.ERRO_GPS_DISABLED){
+                  this.openAlertNotGeolocation("O serviço de localização esta desligado", "Por favor ligue sua localização e tente novamente.");
+                } else {
+                  this.openAlertNotGeolocation("Você deve permitir que o aplicativo pegue sua localização", "Por favor autorize o serviço de localização e tente novamente.");        
+                }
+                console.log("Error " + error.message);
+              }
+            );
+            */
+            this.statusBar.styleDefault();
+            this.splashScreen.hide();
     });
   }
 

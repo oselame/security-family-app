@@ -12,7 +12,10 @@ class LocationController {
         this.router.get('/', this.getLocations.bind(this));
         this.router.get('/:name', this.getLocationsByName.bind(this));
         this.router.get('/:name/today', this.getLocationsByNameToday.bind(this));
+        
         this.router.post('/', this.saveLocation.bind(this));
+
+        this.router.delete('/clear', this.clearLocations.bind(this));
     }
 
     getLocations(req, res) {
@@ -64,6 +67,17 @@ class LocationController {
 
     saveLocation(req, res) {
         LocationService.saveLocation(req.body, function(err, count) {
+            if (err) {
+                    res.json(err);
+                } else {
+                    res.json(count);
+                } 
+        })
+    }
+
+    clearLocations(req, res) {
+        console.log("LocationController.clearLocations()");
+        LocationService.clearLocations(function(err, count) {
             if (err) {
                     res.json(err);
                 } else {

@@ -3,12 +3,13 @@
     <name>Security Family</name>
     <description>The best family security application</description>
     <author email="adrianooselame@gmail.com" href="http://softal.com/">Softal Team</author>
-    <content original-src="index.html" src="http://192.168.56.1:8100" />
+    <content original-src="index.html" src="http://192.168.56.1:8101" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-navigation href="http://192.168.25.10:8100" />
     <allow-navigation href="http://192.168.56.1:8100" />
     <allow-navigation href="http://192.168.250.1:8100" />
+    <allow-navigation href="http://192.168.56.1:8101" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

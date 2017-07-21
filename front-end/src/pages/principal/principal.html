@@ -8,16 +8,9 @@
 </ion-header>
 
 <ion-content padding>
+    principal
+  <!--
     <agm-map [latitude]="lat" [longitude]="lng">
-      
-      <!--
-      <agm-marker [latitude]="loc.latitude" 
-                  [longitude]="loc.longitude" 
-                  [markerDraggable]="false"
-                  *ngFor="let loc of locationProvider.locations"
-                  >
-      </agm-marker>
-      -->
       <agm-polyline>
           <agm-polyline-point 
                   [latitude]="loc.latitude" 
@@ -26,23 +19,13 @@
  *          </agm-polyline-point>
       </agm-polyline>
     </agm-map>
-</ion-content>
-
-<ion-footer>
-    <!--
-    <ion-scroll scrollX="true" class="item">
-      <ion-row>
-          <ion-col width-40>
-              <ion-icon name="analytics"></ion-icon>
-          </ion-col> 
-          <ion-col width-40>
-              <ion-icon name="aperture"></ion-icon>
-          </ion-col> 
-      </ion-row>
-    </ion-scroll>
     -->
+</ion-content>
+<!--
+<ion-footer>
   <button ion-button (click)="startBackgroundGeolocation()"
      [disabled]="started">Start</button>
   <button ion-button (click)="stopBackgroundGeolocation()"
     [disabled]="!started">Stop</button>
   <button ion-button (click)="getLocations()">Locations</button></ion-footer>
+-->

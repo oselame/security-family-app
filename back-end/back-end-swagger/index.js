@@ -44,6 +44,9 @@ apiV1.use('/sync', syncApiV1);
 var memberApiV1 = express.Router();
 apiV1.use('/member', memberApiV1);
 
+var groupApiV1 = express.Router();
+apiV1.use('/group', groupApiV1);
+
 var LocationController = require('./controllers/location-controller');
 var locationController = new LocationController(locationApiV1);
 
@@ -52,6 +55,10 @@ var syncController = new SyncController(syncApiV1);
 
 var MemberController = require('./controllers/member-controller');
 var memberController = new MemberController(memberApiV1);
+
+var GroupController = require('./controllers/group-controller');
+var groupController = new GroupController(groupApiV1);
+
 
 app.get('/', function(req, res) {
     res.send('Hello World!');

@@ -10,9 +10,12 @@ class MemberController {
 
     registerRoutes() {
         this.router.get('/', this.getAllMembers.bind(this));
-        this.router.get('/:name', this.getAllMembersByName.bind(this));
+        this.router.get('/:id', this.getMemberById.bind(this));
+        this.router.get('/email/:email', this.getMemberByEmail.bind(this));
+
         this.router.post('/', this.saveMember.bind(this) );
         this.router.put('/', this.updateMember.bind(this) );
+        this.router.delete('/:id', this.deleteMember.bind(this) );
     }
 
     getAllMembers(req, res) {
@@ -26,14 +29,30 @@ class MemberController {
         });
     }
 
-    getAllMembersByName(req, res) {
+    getMemberById(req, res) {
         console.log("MemberController.getAllMembersByName()");
-        if (!req.params.name) {
-            res.setHeader('Location', '/member/' + req.headers.name);
+        if (!req.params.id) {
+            res.setHeader('Location', '/member/' + req.headers.id);
             res.sendStatus(500);
         }
-        console.log("param: " + req.params.name);
-        MemberService.getAllMembersByName(req.params.name, 
+        MemberService.getMemberById(req.params.id, 
+            function(err, rows) {
+                if (err) {
+                    res.json(err);
+                } else {
+                    res.json(rows)
+                }
+            }
+        );
+    }
+
+    getMemberByEmail(req, res) {
+        console.log("MemberController.getMemberByEmail()");
+        if (!req.params.email) {
+            res.setHeader('Location', '/member/email/' + req.headers.email);
+            res.sendStatus(500);
+        }
+        MemberService.getMemberByEmail(req.params.email, 
             function(err, rows) {
                 if (err) {
                     res.json(err);
@@ -64,6 +83,23 @@ class MemberController {
                 res.json(count);
             }
         });
+    }
+
+    deleteMember(req, res) {
+        console.log("MemberController.deleteMember()");
+        if (!req.params.id) {
+            res.setHeader('Location', '/member/' + req.headers.id);
+            res.sendStatus(500);
+        }
+        MemberService.deleteMember(req.params.id, 
+            function(err, rows) {
+                if (err) {
+                    res.json(err);
+                } else {
+                    res.json(rows)
+                }
+            }
+        );
     }
 }
 

@@ -18,7 +18,10 @@ export class ConfigPage {
   }
 
   onSaveConfig() {
-    this.provider.saveConfiguration().then(() => this.viewController.dismiss());
+    this.provider.saveConfiguration()
+      .then(
+        () => this.viewController.dismiss()
+      );
   }
 
 }
